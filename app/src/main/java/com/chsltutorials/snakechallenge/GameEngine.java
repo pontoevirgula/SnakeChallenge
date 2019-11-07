@@ -123,13 +123,13 @@ public class GameEngine {
             }
         }
 
-//        for (int i = 1; i< snake.size() ; i++){
-//
-//            if (getSnakeHead().equals(snake.get(i))){
-//                currentGameState = GameState.LOST;
-//                return;
-//            }
-//        }
+        for (int i = 1; i< snake.size() ; i++){
+
+            if (getSnakeHead().equals(snake.get(i))){
+                currentGameState = GameState.LOST;
+                return;
+            }
+        }
 
 
         for (Coordinates food : foods){
@@ -139,24 +139,14 @@ public class GameEngine {
             }
         }
 
-        if (ifHaveFood() && !currentGameState.equals(GameState.RESTARTED)){
-            addFood();
-        }
-
-    }
-
-
-    public boolean ifHaveFood(){
         if (foodToRemove != null){
             foods.remove(foodToRemove);
-            return true;
-        }else if (currentGameState.equals(GameState.RESTARTED) && !foods.isEmpty()) {
-            foods.clear();
             addFood();
-            return true;
         }
-        return false;
+
     }
+
+
 
     private void updateSnakeDirections(int x, int y){
 

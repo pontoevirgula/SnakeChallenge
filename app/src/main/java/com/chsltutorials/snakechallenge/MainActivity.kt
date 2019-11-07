@@ -41,17 +41,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        //gameEngine.initNewGame()
-        //startUpdateGame()
-        tvRestartGame.setOnClickListener {
-            gameRestarted = true
-            init()
-            gameEngine.ifHaveFood()
-        }
-    }
-
     private fun onGameLost(){
         Toast.makeText(this,"VOCÊ PERDEU", Toast.LENGTH_SHORT).show()
     }
@@ -65,11 +54,9 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
                 if (gameEngine.currentGameState == GameState.RUNNING) {
                     handler.postDelayed(this, updateDelay )
                 }
-                if (gameEngine.currentGameState == GameState.RESTARTED){
-                    //gameEngine.ifHaveFood()
-                } else if (gameEngine.currentGameState == GameState.LOST) {
+               if (gameEngine.currentGameState == GameState.LOST) {
                     onGameLost()
-                }
+               }
 
                 snackView.setSnakeViewType(gameEngine.map)
                 snackView.invalidate()
